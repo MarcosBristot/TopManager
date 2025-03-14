@@ -38,10 +38,21 @@ def menu_principal():
     while True:
         tela.fill(BRANCO)
 
+        # Calcula as posições dos botões com base em porcentagens da tela
+        largura_botao = LARGURA * 0.25  # 25% da largura da tela
+        altura_botao = ALTURA * 0.1     # 10% da altura da tela
+        espacamento = ALTURA * 0.05     # 5% da altura da tela
+
+        # Posiciona os botões no centro da tela
+        x_botao = (LARGURA - largura_botao) / 2
+        y_botao1 = (ALTURA - (3 * altura_botao + 2 * espacamento)) / 2
+        y_botao2 = y_botao1 + altura_botao + espacamento
+        y_botao3 = y_botao2 + altura_botao + espacamento
+
         # Desenha os botões
-        desenhar_botao("Gerenciar Times", 300, 200, 200, 50, VERDE)
-        desenhar_botao("Simular Partida", 300, 300, 200, 50, VERDE)
-        desenhar_botao("Sair", 300, 400, 200, 50, VERMELHO)
+        desenhar_botao("Listar Clubes", x_botao, y_botao1, largura_botao, altura_botao, VERDE)
+        desenhar_botao("Simular Partida", x_botao, y_botao2, largura_botao, altura_botao, VERDE)
+        desenhar_botao("Sair", x_botao, y_botao3, largura_botao, altura_botao, VERMELHO)
 
         # Verifica eventos
         for evento in pygame.event.get():
@@ -50,34 +61,43 @@ def menu_principal():
                 sys.exit()
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
-                # Verifica se o botão "Gerenciar Times" foi clicado
-                if botao_clicado(300, 200, 200, 50, (x, y)):
-                    return "gerenciar_times"
+                # Verifica se o botão "Listar Clubes" foi clicado
+                if botao_clicado(x_botao, y_botao1, largura_botao, altura_botao, (x, y)):
+                    return "listar_clubes"
                 # Verifica se o botão "Simular Partida" foi clicado
-                if botao_clicado(300, 300, 200, 50, (x, y)):
+                if botao_clicado(x_botao, y_botao2, largura_botao, altura_botao, (x, y)):
                     return "simular_partida"
                 # Verifica se o botão "Sair" foi clicado
-                if botao_clicado(300, 400, 200, 50, (x, y)):
+                if botao_clicado(x_botao, y_botao3, largura_botao, altura_botao, (x, y)):
                     pygame.quit()
                     sys.exit()
 
         pygame.display.flip()
 
-# Função para exibir a tela de simulação de partida
-def tela_simular_partida(times):
+# Função para exibir a lista de clubes e jogadores
+def tela_listar_clubes(times):
     while True:
         tela.fill(BRANCO)
 
-        # Exibe os times disponíveis
-        y = 50
-        for i, time in enumerate(times):
-            texto = f"{i + 1}. {time.nome}"
+        # Exibe os clubes e jogadores
+        y = ALTURA * 0.05  # 5% da altura da tela
+        for time in times:
+            texto = f"Clube: {time.nome}"
             texto_surface = fonte.render(texto, True, PRETO)
-            tela.blit(texto_surface, (50, y))
-            y += 50
+            tela.blit(texto_surface, (LARGURA * 0.05, y))  # 5% da largura da tela
+            y += ALTURA * 0.05  # 5% da altura da tela
+            for jogador in time.jogadores:
+                texto = f"  Jogador: {jogador}"
+                texto_surface = fonte.render(texto, True, PRETO)
+                tela.blit(texto_surface, (LARGURA * 0.1, y))  # 10% da largura da tela
+                y += ALTURA * 0.04  # 4% da altura da tela
 
         # Botão de voltar
-        desenhar_botao("Voltar", 50, 500, 100, 50, AZUL)
+        largura_botao = LARGURA * 0.15  # 15% da largura da tela
+        altura_botao = ALTURA * 0.08    # 8% da altura da tela
+        x_botao = LARGURA * 0.05        # 5% da largura da tela
+        y_botao = ALTURA * 0.85         # 85% da altura da tela
+        desenhar_botao("Voltar", x_botao, y_botao, largura_botao, altura_botao, AZUL)
 
         # Verifica eventos
         for evento in pygame.event.get():
@@ -87,7 +107,40 @@ def tela_simular_partida(times):
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 # Verifica se o botão "Voltar" foi clicado
-                if botao_clicado(50, 500, 100, 50, (x, y)):
-                    return  # Retorna ao menu principal
+                if botao_clicado(x_botao, y_botao, largura_botao, altura_botao, (x, y)):
+                    return
+
+        pygame.display.flip()
+
+# Função para exibir a tela de simulação de partida
+def tela_simular_partida(times):
+    while True:
+        tela.fill(BRANCO)
+
+        # Exibe os times disponíveis
+        y = ALTURA * 0.1  # 10% da altura da tela
+        for i, time in enumerate(times):
+            texto = f"{i + 1}. {time.nome}"
+            texto_surface = fonte.render(texto, True, PRETO)
+            tela.blit(texto_surface, (LARGURA * 0.1, y))  # 10% da largura da tela
+            y += ALTURA * 0.08  # 8% da altura da tela
+
+        # Botão de voltar
+        largura_botao = LARGURA * 0.15  # 15% da largura da tela
+        altura_botao = ALTURA * 0.08    # 8% da altura da tela
+        x_botao = LARGURA * 0.05        # 5% da largura da tela
+        y_botao = ALTURA * 0.85         # 85% da altura da tela
+        desenhar_botao("Voltar", x_botao, y_botao, largura_botao, altura_botao, AZUL)
+
+        # Verifica eventos
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                # Verifica se o botão "Voltar" foi clicado
+                if botao_clicado(x_botao, y_botao, largura_botao, altura_botao, (x, y)):
+                    return
 
         pygame.display.flip()

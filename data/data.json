@@ -1,0 +1,26 @@
+{
+    "clubes": [
+        {
+            "id": 1,
+            "nome": "Grêmio",
+            "jogadores": [
+                {"id": 1, "nome": "Pedro Geromel", "idade": 37, "overall": 85, "posicao": "Zagueiro"},
+                {"id": 2, "nome": "Kannemann", "idade": 36, "overall": 84, "posicao": "Zagueiro"},
+                {"id": 3, "nome": "Luis Suárez", "idade": 36, "overall": 89, "posicao": "Atacante"},
+                {"id": 4, "nome": "Ferreira", "idade": 28, "overall": 82, "posicao": "Atacante"},
+                {"id": 5, "nome": "Gabriel Grando", "idade": 23, "overall": 78, "posicao": "Goleiro"}
+            ]
+        },
+        {
+            "id": 2,
+            "nome": "Internacional",
+            "jogadores": [
+                {"id": 6, "nome": "Mercado", "idade": 36, "overall": 83, "posicao": "Zagueiro"},
+                {"id": 7, "nome": "Bustos", "idade": 26, "overall": 81, "posicao": "Lateral"},
+                {"id": 8, "nome": "Alan Patrick", "idade": 32, "overall": 86, "posicao": "Meio-Campo"},
+                {"id": 9, "nome": "Wanderson", "idade": 29, "overall": 84, "posicao": "Atacante"},
+                {"id": 10, "nome": "Rochet", "idade": 30, "overall": 83, "posicao": "Goleiro"}
+            ]
+        }
+    ]
+}

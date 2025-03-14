@@ -1,5 +1,6 @@
 class Time:
-    def __init__(self, nome):
+    def __init__(self, id, nome):
+        self.id = id
         self.nome = nome
         self.jogadores = []
 
@@ -7,4 +8,4 @@ class Time:
         self.jogadores.append(jogador)
 
     def __str__(self):
-        return f"{self.nome} - {len(self.jogadores)} jogadores"
+        return f"{self.nome} ({len(self.jogadores)} jogadores)"

@@ -1,5 +1,6 @@
 class Jogador:
-    def __init__(self, nome, idade, overall, posicao):
+    def __init__(self, id, nome, idade, overall, posicao):
+        self.id = id
         self.nome = nome
         self.idade = idade
         self.overall = overall
