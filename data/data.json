@@ -8,7 +8,13 @@
                 {"id": 2, "nome": "Kannemann", "idade": 36, "overall": 84, "posicao": "Zagueiro"},
                 {"id": 3, "nome": "Luis Suárez", "idade": 36, "overall": 89, "posicao": "Atacante"},
                 {"id": 4, "nome": "Ferreira", "idade": 28, "overall": 82, "posicao": "Atacante"},
-                {"id": 5, "nome": "Gabriel Grando", "idade": 23, "overall": 78, "posicao": "Goleiro"}
+                {"id": 5, "nome": "Gabriel Grando", "idade": 23, "overall": 78, "posicao": "Goleiro"},
+                {"id": 21, "nome": "Reinaldo", "idade": 34, "overall": 79, "posicao": "Lateral"},
+                {"id": 22, "nome": "João Pedro", "idade": 27, "overall": 77, "posicao": "Lateral"},
+                {"id": 23, "nome": "Villasanti", "idade": 26, "overall": 83, "posicao": "Meio-Campo"},
+                {"id": 24, "nome": "Pepê", "idade": 25, "overall": 80, "posicao": "Meio-Campo"},
+                {"id": 25, "nome": "Cristaldo", "idade": 27, "overall": 81, "posicao": "Meio-Campo"},
+                {"id": 26, "nome": "João Pedro Galvão", "idade": 31, "overall": 78, "posicao": "Atacante"}
             ]
         },
         {
@@ -19,7 +25,47 @@
                 {"id": 7, "nome": "Bustos", "idade": 26, "overall": 81, "posicao": "Lateral"},
                 {"id": 8, "nome": "Alan Patrick", "idade": 32, "overall": 86, "posicao": "Meio-Campo"},
                 {"id": 9, "nome": "Wanderson", "idade": 29, "overall": 84, "posicao": "Atacante"},
-                {"id": 10, "nome": "Rochet", "idade": 30, "overall": 83, "posicao": "Goleiro"}
+                {"id": 10, "nome": "Rochet", "idade": 30, "overall": 83, "posicao": "Goleiro"},
+                {"id": 27, "nome": "Vitão", "idade": 24, "overall": 80, "posicao": "Zagueiro"},
+                {"id": 28, "nome": "Renê", "idade": 31, "overall": 78, "posicao": "Lateral"},
+                {"id": 29, "nome": "Aránguiz", "idade": 34, "overall": 82, "posicao": "Meio-Campo"},
+                {"id": 30, "nome": "Maurício", "idade": 22, "overall": 80, "posicao": "Meio-Campo"},
+                {"id": 31, "nome": "Enner Valencia", "idade": 34, "overall": 85, "posicao": "Atacante"},
+                {"id": 32, "nome": "Lucca", "idade": 21, "overall": 77, "posicao": "Atacante"}
+            ]
+        },
+        {
+            "id": 3,
+            "nome": "Flamengo",
+            "jogadores": [
+                {"id": 11, "nome": "Rossi", "idade": 28, "overall": 82, "posicao": "Goleiro"},
+                {"id": 12, "nome": "David Luiz", "idade": 36, "overall": 80, "posicao": "Zagueiro"},
+                {"id": 13, "nome": "Arrascaeta", "idade": 29, "overall": 88, "posicao": "Meio-Campo"},
+                {"id": 14, "nome": "Pedro", "idade": 26, "overall": 87, "posicao": "Atacante"},
+                {"id": 15, "nome": "Bruno Henrique", "idade": 33, "overall": 85, "posicao": "Atacante"},
+                {"id": 33, "nome": "Léo Pereira", "idade": 28, "overall": 81, "posicao": "Zagueiro"},
+                {"id": 34, "nome": "Ayrton Lucas", "idade": 26, "overall": 83, "posicao": "Lateral"},
+                {"id": 35, "nome": "Varela", "idade": 30, "overall": 79, "posicao": "Lateral"},
+                {"id": 36, "nome": "Gerson", "idade": 26, "overall": 84, "posicao": "Meio-Campo"},
+                {"id": 37, "nome": "Pulgar", "idade": 29, "overall": 80, "posicao": "Meio-Campo"},
+                {"id": 38, "nome": "Everton Cebolinha", "idade": 27, "overall": 82, "posicao": "Atacante"}
+            ]
+        },
+        {
+            "id": 4,
+            "nome": "Palmeiras",
+            "jogadores": [
+                {"id": 16, "nome": "Weverton", "idade": 36, "overall": 86, "posicao": "Goleiro"},
+                {"id": 17, "nome": "Gustavo Gómez", "idade": 30, "overall": 85, "posicao": "Zagueiro"},
+                {"id": 18, "nome": "Raphael Veiga", "idade": 28, "overall": 87, "posicao": "Meio-Campo"},
+                {"id": 19, "nome": "Dudu", "idade": 31, "overall": 84, "posicao": "Atacante"},
+                {"id": 20, "nome": "Rony", "idade": 28, "overall": 82, "posicao": "Atacante"},
+                {"id": 39, "nome": "Murilo", "idade": 26, "overall": 83, "posicao": "Zagueiro"},
+                {"id": 40, "nome": "Piquerez", "idade": 25, "overall": 81, "posicao": "Lateral"},
+                {"id": 41, "nome": "Mayke", "idade": 31, "overall": 79, "posicao": "Lateral"},
+                {"id": 42, "nome": "Zé Rafael", "idade": 30, "overall": 83, "posicao": "Meio-Campo"},
+                {"id": 43, "nome": "Gabriel Menino", "idade": 23, "overall": 80, "posicao": "Meio-Campo"},
+                {"id": 44, "nome": "Endrick", "idade": 17, "overall": 80, "posicao": "Atacante"}
             ]
         }
     ]

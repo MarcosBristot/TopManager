@@ -20,6 +20,8 @@ pygame.display.set_caption("TopManager")
 
 # Fonte
 fonte = pygame.font.Font(None, 36)
+fonte_eventos = pygame.font.Font(None, 24) # Fonte menor para a lista de eventos
+
 
 # Função para desenhar botões
 def desenhar_botao(texto, x, y, largura, altura, cor):
@@ -148,29 +150,76 @@ def tela_simular_partida(times):
     tela_exibir_resultado(time_casa, time_visitante, resultado)
 
 
-def tela_exibir_resultado(time_casa, time_visitante, resultado):
-    while True:
+def tela_exibir_resultado(time_casa, time_visitante, resultado_partida):
+    """
+    Exibe o resultado da partida, incluindo o placar e uma lista de eventos.
+    
+    resultado_partida é um dicionário: {"casa": gols_casa, "visitante": gols_visitante, "eventos": lista_de_eventos}
+    """
+    rodando = True
+    scroll_y = 0 # Para permitir rolar a lista de eventos se for muito longa
+    altura_linha_evento = 25 # Altura aproximada de cada linha de evento
+
+    while rodando:
         tela.fill(BRANCO)
-        titulo = fonte.render("Resultado da Partida", True, PRETO)
-        tela.blit(titulo, (LARGURA // 2 - titulo.get_width() // 2, 20))
         
-        resultado_texto = f"{time_casa.nome} {resultado['casa']} - {resultado['visitante']} {time_visitante.nome}"
-        resultado_surface = fonte.render(resultado_texto, True, PRETO)
-        tela.blit(resultado_surface, (LARGURA // 2 - resultado_surface.get_width() // 2, 60))
+        # Título
+        titulo_surface = fonte.render("Resultado da Partida", True, PRETO)
+        titulo_rect = titulo_surface.get_rect(center=(LARGURA / 2, ALTURA * 0.05))
+        tela.blit(titulo_surface, titulo_rect)
+
+        # Placar
+        placar_texto = f"{time_casa.nome} {resultado_partida['casa']} - {resultado_partida['visitante']} {time_visitante.nome}"
+        placar_surface = fonte.render(placar_texto, True, PRETO)
+        placar_rect = placar_surface.get_rect(center=(LARGURA / 2, ALTURA * 0.12))
+        tela.blit(placar_surface, placar_rect)
+
+        # Área para os eventos da partida
+        y_eventos_inicio = ALTURA * 0.20
+        altura_max_eventos = ALTURA * 0.60 # Define uma área para os eventos
+        x_eventos = LARGURA * 0.05
+        largura_eventos = LARGURA * 0.9
+
+        # Desenha uma borda para a área de eventos (opcional)
+        # pygame.draw.rect(tela, PRETO, (x_eventos - 2, y_eventos_inicio - 2, largura_eventos + 4, altura_max_eventos + 4), 1)
+
+        # Exibe os eventos da partida
+        y_atual = y_eventos_inicio - scroll_y
+        for evento_texto in resultado_partida["eventos"]:
+            if y_atual >= y_eventos_inicio and y_atual < y_eventos_inicio + altura_max_eventos - altura_linha_evento:
+                evento_surface = fonte_eventos.render(evento_texto, True, PRETO)
+                tela.blit(evento_surface, (x_eventos, y_atual))
+            y_atual += altura_linha_evento
         
-        desenhar_botao("Voltar", LARGURA * 0.05, ALTURA * 0.85, LARGURA * 0.15, ALTURA * 0.08, AZUL)
-        
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
+        # Botão Voltar
+        largura_botao_voltar = LARGURA * 0.15
+        altura_botao_voltar = ALTURA * 0.08
+        x_botao_voltar = (LARGURA - largura_botao_voltar) / 2 # Centralizado
+        y_botao_voltar = ALTURA * 0.85
+        desenhar_botao("Voltar", x_botao_voltar, y_botao_voltar, largura_botao_voltar, altura_botao_voltar, AZUL)
+
+        for evento_pygame in pygame.event.get():
+            if evento_pygame.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if evento.type == pygame.MOUSEBUTTONDOWN:
-                x, y = pygame.mouse.get_pos()
-                print(f"Clique detectado em: {x}, {y}")  # Teste
+            if evento_pygame.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if botao_clicado(x_botao_voltar, y_botao_voltar, largura_botao_voltar, altura_botao_voltar, mouse_pos):
+                    rodando = False # Volta para a tela anterior (menu de simulação ou principal)
+                    return # Sai da função tela_exibir_resultado
                 
-                if botao_clicado(LARGURA * 0.05, ALTURA * 0.85, LARGURA * 0.15, ALTURA * 0.08, (x, y)):
-                    print("Botão voltar pressionado")
-                    return
-        
+                # Scroll com o mouse (rodinha)
+                if evento_pygame.button == 4: # Roda para cima
+                    scroll_y = max(0, scroll_y - altura_linha_evento)
+                elif evento_pygame.button == 5: # Roda para baixo
+                    # Calcula o scroll máximo para não rolar além do conteúdo
+                    altura_total_eventos = len(resultado_partida["eventos"]) * altura_linha_evento
+                    max_scroll = max(0, altura_total_eventos - altura_max_eventos)
+                    scroll_y = min(max_scroll, scroll_y + altura_linha_evento)
+
+
         pygame.display.flip()
 
+# Não se esqueça de que a função tela_simular_partida() em interface.py agora vai chamar:
+# resultado = Partida(time_casa, time_visitante, "Estádio Central").simular() # 'resultado' agora é o dicionário
+# tela_exibir_resultado(time_casa, time_visitante, resultado)
